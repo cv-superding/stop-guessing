@@ -1,9 +1,9 @@
 <p align="center">
-  <strong>English</strong> · <a href="./README_zh-CN.md">简体中文</a>
+  <a href="./README_en.md">English</a> · <strong>简体中文</strong>
 </p>
 
 <p align="center">
-  <img src="docs/assets/banner.svg" alt="stop-guessing — your agent doesn't read the error message. This skill makes it." width="100%">
+  <img src="docs/assets/banner.svg" alt="stop-guessing — 你的 agent 从来不读报错信息。这个技能让它读。" width="100%">
 </p>
 
 <p align="center">
@@ -20,82 +20,82 @@
   <img src="https://img.shields.io/badge/status-stable%20%C2%B7%20zero%20config-2f81f7?style=flat-square" alt="status">
 </p>
 
-<p align="center"><em>Your agent doesn't read the error message. This skill makes it.</em></p>
+<p align="center"><em>你的 agent 从来不读报错信息。这个技能让它读。</em></p>
 
-An agent skill that replaces **"probably X, let me edit and see"** with a fixed debugging discipline: reproduce → localize → evidence → minimal fix → verify. If the skill is loaded, the agent physically cannot stack a guessed fix on top of another guessed fix — it has to show you the proof first.
+一个给编程 agent 用的调试纪律技能，用固定流程替换 **"大概是 X 吧，我改一下试试"**：复现 → 定位 → 证据 → 最小修复 → 验证。加载这个技能后，agent 不能再把一个猜的修法叠在另一个猜的修法上面——必须先给你看证据。
 
-Works with any agent that supports [Agent Skills](https://agentskills.io): Claude Code, Codex CLI, Cursor, Gemini CLI, OpenCode, and more.
+兼容所有支持 [Agent Skills](https://agentskills.io) 的 agent：Claude Code、Codex CLI、Cursor、Gemini CLI、OpenCode 等。
 
-## The discipline, as a map
+## 纪律，画成一张图
 
 <p align="center">
-  <img src="docs/assets/diagram.png" alt="stop-guessing workflow: Reproduce → Read Full Error → Localize → One Hypothesis → Minimal Fix → Verify, with a disproven loop and a Stop &amp; Ask escalation path" width="100%">
+  <img src="docs/assets/diagram.png" alt="stop-guessing 流程图：复现 → 读完整报错 → 定位 → 唯一假设 → 最小修复 → 验证，带证伪回环和 Stop &amp; Ask 升级路径" width="100%">
 </p>
 
-The map above is a live [Archify](https://github.com/tt-a1i/archify) diagram — open [`docs/stop-guessing-diagram.html`](docs/stop-guessing-diagram.html) in a browser for the interactive version (pan/zoom, path tracing, dark mode).
+上图由 [Archify](https://github.com/tt-a1i/archify) 生成——在浏览器中打开 [`docs/stop-guessing-diagram.html`](docs/stop-guessing-diagram.html) 可查看交互版（缩放、路径追踪、暗色主题）。
 
-## The problem
+## 问题
 
-Ask an agent to fix a bug and watch what happens:
+让 agent 修一个 bug，通常会看到这样的对话：
 
-> **Agent:** Ah, this is probably because the environment isn't loaded. *(adds `dotenv.config()`)* Let me also add a null check just in case. *(edits)* Should work now.
+> **Agent：** 啊，这大概是因为环境变量没加载。*（加了 `dotenv.config()`）* 我再顺手加个空值检查以防万一。*（又改了一处）* 现在应该可以了。
 
-No reproduction. No evidence. Two changes stacked without running anything between them. The bug survives, hidden behind a symptom patch — and now you get to debug the patch too.
+没有复现、没有证据、两次修改之间什么都没运行。bug 还活着，只是被一层"症状补丁"盖住了——接下来你要同时调试 bug 和补丁。
 
-stop-guessing is one Markdown file that rewrites that behavior:
+stop-guessing 就是一个 Markdown 文件，把上面这种行为改写成：
 
-> **Agent (with skill):** Reproduced: `TypeError` at `parse.ts:88`, exits 1.
-> Read the full trace — the crash is a consequence, not the cause. Followed the data: `config.headers` is undefined only when no auth token exists.
-> **Root cause:** `buildConfig()` omits the `headers` default.
-> **Fix:** 1 line, in `buildConfig()`. No other changes.
-> **Verified:** original command now exits 0; `auth` test suite passes 14/14.
+> **Agent（装了技能后）：** 已复现：`parse.ts:88` 抛 `TypeError`，进程退出码 1。
+> 读了完整堆栈——崩溃点是"结果"不是"原因"。顺着数据查：`config.headers` 只在没有 auth token 时为 undefined。
+> **根因：** `buildConfig()` 漏了 `headers` 的默认值。
+> **修复：** `buildConfig()` 里改 1 行，未动其他代码。
+> **验证：** 原命令退出码 0；`auth` 测试套件 14/14 通过。
 
-## Install
+## 安装
 
-With the [Skills CLI](https://skills.sh):
+用 [Skills CLI](https://skills.sh)：
 
 ```bash
 npx skills add cv-superding/stop-guessing --global
 ```
 
-Leave off `--global` to install only in the current project. Add `--agent '*'` to install for every detected agent.
+去掉 `--global` 只装在当前项目；加 `--agent '*'` 给所有检测到的 agent 安装。
 
-Claude Code 2.1.142+ can also install it as a plugin:
+Claude Code 2.1.142+ 也可以用插件方式：
 
 ```text
 /plugin marketplace add cv-superding/stop-guessing
 /plugin install stop-guessing@stop-guessing
 ```
 
-Manual install: copy `SKILL.md` into your agent's skills folder.
+手动安装：把 `SKILL.md` 复制进你的 agent 技能目录即可。
 
-## Usage
+## 使用
 
-Nothing to learn. The skill triggers whenever you ask for a bug fix, paste an error, or say "it's broken" / "tests are failing" / "why does this crash".
+不需要学任何新东西。只要你让 agent 修 bug、贴了报错、或者说"挂了" / "测试跑不过" / "为什么崩了"，技能就会触发。
 
-Call it explicitly if you want:
+也可以显式调用：
 
 ```text
 /stop-guessing
-Tests in auth.test.ts fail on CI but pass locally. Find out why.
+auth.test.ts 在 CI 上挂了，但本地能过。查一下为什么。
 ```
 
-## What it enforces
+## 它强制了什么
 
-| Without | With |
+| 没有技能 | 装了技能 |
 |---|---|
-| Diagnose from the error's first line | Read the full trace; crash site ≠ cause |
-| "Probably the env" | One hypothesis, with observed evidence attached |
-| Fix + refactor + dep bump in one diff | Minimal diff; drive-bys proposed separately |
-| "Fixed, should work now" | Re-run the original reproduction, show output |
-| Silently retry the same command 5× | Two disproven hypotheses → report what's ruled out, ask for what only you know |
+| 只看报错第一行就下结论 | 读完整堆栈；崩溃点 ≠ 病灶 |
+| "大概是环境问题" | 一次只有一个假设，且必须附带观测到的证据 |
+| 修 bug + 顺手重构 + 升级依赖塞进一个 diff | 最小 diff；顺手改动单独提议 |
+| "改好了，应该可以了" | 重跑原始复现命令，贴出输出 |
+| 同一条命令默默重试 5 次 | 两个假设被证伪就停下：报告已排除项，向你要只有你掌握的信息 |
 
-The full discipline — including six numbered anti-patterns with Before/After examples (*shotgun fix*, *symptom patching*, *narrated diagnosis*, *optimistic refactor*, *retry loop*, *confessing by silence*) — is in [`SKILL.md`](SKILL.md).
+完整纪律（含六种编号反模式及 Before/After 示例：霰弹枪式修复、症状补丁、口头诊断、顺手重构、玄学重试、静默认输）见 [`SKILL.md`](SKILL.md)。
 
-## Verify it works
+## 验证效果
 
-Give your agent a bug and check the reply for the four required parts: **root cause → evidence → fix → verification**. If it ships an unverified fix, the skill isn't loaded — check `your-agent's skills list`.
+给你的 agent 一个 bug，检查回复是否包含四个必需部分：**根因 → 证据 → 修复 → 验证**。如果它交付了未验证的修复，说明技能没加载——检查 agent 的技能列表。
 
-## License
+## 许可
 
 MIT
