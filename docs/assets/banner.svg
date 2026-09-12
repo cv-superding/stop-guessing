@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-label="stop-guessing — a debugging discipline skill for coding agents">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1526"/>
+      <stop offset="0.55" stop-color="#0e1b31"/>
+      <stop offset="1" stop-color="#122340"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.82" cy="0.1" r="0.9">
+      <stop offset="0" stop-color="#2b4a7a" stop-opacity="0.55"/>
+      <stop offset="0.55" stop-color="#16294a" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#16294a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="icon" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#37d0a2"/>
+      <stop offset="1" stop-color="#2f7ff0"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="1" y="1" width="1198" height="298" rx="24" fill="url(#bg)"/>
+  <rect x="1" y="1" width="1198" height="298" rx="24" fill="url(#glow)"/>
+  <rect x="1.5" y="1.5" width="1197" height="297" rx="23.5" fill="none" stroke="#24395e" stroke-width="1.5"/>
+
+  <!-- icon: magnifying glass over an error line -->
+  <g>
+    <rect x="56" y="76" width="96" height="96" rx="22" fill="url(#icon)"/>
+    <circle cx="98" cy="115" r="19" fill="none" stroke="#ffffff" stroke-width="6"/>
+    <line x1="112" y1="130" x2="126" y2="145" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
+    <line x1="88" y1="153" x2="120" y2="153" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.85"/>
+  </g>
+
+  <text x="190" y="130" font-family="Segoe UI, system-ui, -apple-system, sans-serif" font-size="54" font-weight="700" fill="#ffffff">stop-guessing</text>
+  <text x="192" y="172" font-family="Segoe UI, system-ui, -apple-system, sans-serif" font-size="22" fill="#b8c7dd">Your agent doesn't read the error message. This skill makes it.</text>
+
+  <!-- feature chips -->
+  <g font-family="Consolas, Menlo, monospace" font-size="16">
+    <rect x="56"  y="200" width="170" height="36" rx="18" fill="#1b2a44" stroke="#2a3c5e"/>
+    <text x="141" y="223" text-anchor="middle" fill="#cfe0f5">reproduce first</text>
+    <rect x="240" y="200" width="161" height="36" rx="18" fill="#1b2a44" stroke="#2a3c5e"/>
+    <text x="320" y="223" text-anchor="middle" fill="#cfe0f5">one hypothesis</text>
+    <rect x="415" y="200" width="142" height="36" rx="18" fill="#1b2a44" stroke="#2a3c5e"/>
+    <text x="486" y="223" text-anchor="middle" fill="#cfe0f5">minimal diff</text>
+    <rect x="571" y="200" width="152" height="36" rx="18" fill="#1b2a44" stroke="#2a3c5e"/>
+    <text x="647" y="223" text-anchor="middle" fill="#cfe0f5">verify always</text>
+    <rect x="737" y="200" width="170" height="36" rx="18" fill="#1b2a44" stroke="#2a3c5e"/>
+    <text x="822" y="223" text-anchor="middle" fill="#cfe0f5">6 anti-patterns</text>
+  </g>
+
+  <text x="58" y="272" font-family="Consolas, Menlo, monospace" font-size="15" fill="#7e93b4">agent skill · MIT · works with Claude Code / Codex / Cursor / Gemini CLI / OpenCode</text>
+</svg>

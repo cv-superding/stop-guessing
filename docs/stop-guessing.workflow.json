@@ -1,0 +1,195 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "stop-guessing — evidence before edits",
+    "output": "docs/stop-guessing-diagram.html",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    {
+      "id": "discipline",
+      "label": "The discipline — evidence before any edit"
+    },
+    {
+      "id": "stuck",
+      "label": "Stuck Escalation",
+      "variant": "exception"
+    }
+  ],
+  "phases": [
+    {
+      "id": "observe",
+      "label": "Observe first",
+      "fromCol": 0,
+      "toCol": 2
+    },
+    {
+      "id": "diagnose",
+      "label": "Diagnose with evidence",
+      "fromCol": 3,
+      "toCol": 3,
+      "variant": "emphasis"
+    },
+    {
+      "id": "prove",
+      "label": "Fix + verify",
+      "fromCol": 4,
+      "toCol": 5
+    }
+  ],
+  "mainPath": [
+    "reproduce",
+    "read",
+    "localize",
+    "hypothesis",
+    "fix",
+    "verify"
+  ],
+  "nodes": [
+    {
+      "id": "reproduce",
+      "lane": "discipline",
+      "col": 0,
+      "type": "backend",
+      "label": "Reproduce",
+      "sublabel": "observe, never assume",
+      "width": 108
+    },
+    {
+      "id": "read",
+      "lane": "discipline",
+      "col": 1,
+      "type": "backend",
+      "label": "Read Full Error",
+      "sublabel": "crash site ≠ cause",
+      "width": 126
+    },
+    {
+      "id": "localize",
+      "lane": "discipline",
+      "col": 2,
+      "type": "backend",
+      "label": "Localize",
+      "sublabel": "follow the data",
+      "width": 108
+    },
+    {
+      "id": "hypothesis",
+      "lane": "discipline",
+      "col": 3,
+      "type": "security",
+      "label": "One Hypothesis",
+      "sublabel": "with observed evidence",
+      "width": 114,
+      "tag": "evidence gate"
+    },
+    {
+      "id": "fix",
+      "lane": "discipline",
+      "col": 4,
+      "type": "backend",
+      "label": "Minimal Fix",
+      "sublabel": "cause, not symptom",
+      "width": 114
+    },
+    {
+      "id": "verify",
+      "lane": "discipline",
+      "col": 5,
+      "type": "database",
+      "label": "Verify",
+      "sublabel": "re-run the reproduction",
+      "width": 126,
+      "tag": "root cause → proof"
+    },
+    {
+      "id": "stuck",
+      "lane": "stuck",
+      "col": 3,
+      "type": "external",
+      "label": "Stop & Ask",
+      "sublabel": "ruled out + what you need",
+      "width": 126
+    }
+  ],
+  "edges": [
+    {
+      "from": "reproduce",
+      "to": "read",
+      "role": "main"
+    },
+    {
+      "from": "read",
+      "to": "localize",
+      "role": "main"
+    },
+    {
+      "from": "localize",
+      "to": "hypothesis",
+      "role": "main"
+    },
+    {
+      "from": "hypothesis",
+      "to": "fix",
+      "label": "evidence attached",
+      "role": "main",
+      "variant": "emphasis"
+    },
+    {
+      "from": "fix",
+      "to": "verify",
+      "role": "main"
+    },
+    {
+      "from": "hypothesis",
+      "to": "localize",
+      "label": "disproven",
+      "role": "error",
+      "variant": "dashed"
+    },
+    {
+      "from": "hypothesis",
+      "to": "stuck",
+      "label": "2 disproven",
+      "role": "branch",
+      "variant": "security"
+    },
+    {
+      "from": "reproduce",
+      "to": "stuck",
+      "label": "cannot reproduce",
+      "role": "return",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Guessing Is Expensive",
+      "items": [
+        "A plausible-but-wrong fix hides the bug behind a symptom patch",
+        "Two stacked guesses cost more than one reproduction",
+        "\"Probably\" means go back one step"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Two Prerequisites for Every Edit",
+      "items": [
+        "A reproduction — the failure observed, not assumed",
+        "A located cause — evidence pinning the mechanism",
+        "If either is missing, producing it is the next action"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Reporting Contract",
+      "items": [
+        "Root cause → evidence → fix → verification",
+        "An unverified fix is a hypothesis with edits attached",
+        "Being stuck is a finding — report what is ruled out"
+      ]
+    }
+  ]
+}

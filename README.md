@@ -2,21 +2,37 @@
   <strong>English</strong> · <a href="./README_zh-CN.md">简体中文</a>
 </p>
 
-<h1 align="center">stop-guessing</h1>
-
 <p align="center">
-  <em>Your agent doesn't read the error message. This skill makes it.</em>
+  <img src="docs/assets/banner.svg" alt="stop-guessing — your agent doesn't read the error message. This skill makes it." width="100%">
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/works%20with-Claude%20Code%20%7C%20Codex%20%7C%20Cursor%20%7C%20Gemini%20CLI%20%7C%20OpenCode-111111?style=flat-square" alt="Works with">
-  <img src="https://img.shields.io/badge/license-MIT-111111?style=flat-square" alt="MIT">
-  <img src="https://img.shields.io/badge/core-one%20Markdown%20file-111111?style=flat-square" alt="One file">
+  <img src="https://img.shields.io/badge/license-MIT-3fb950?style=flat-square" alt="license MIT">
+  <img src="https://img.shields.io/badge/type-agent%20skill-2f81f7?style=flat-square" alt="type agent skill">
+  <img src="https://img.shields.io/badge/core-one%20SKILL.md-f0883e?style=flat-square" alt="core: one SKILL.md">
+  <img src="https://img.shields.io/badge/version-1.0.0-a371f7?style=flat-square" alt="version 1.0.0">
+  <img src="https://img.shields.io/badge/PRs-welcome-3fb950?style=flat-square" alt="PRs welcome">
 </p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/install-npx%20skills%20add%20cv--superding%2Fstop--guessing-8957e5?style=flat-square" alt="install">
+  <img src="https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Cursor%20%C2%B7%20Gemini%20CLI%20%C2%B7%20OpenCode-111111?style=flat-square" alt="works with">
+  <img src="https://img.shields.io/badge/status-stable%20%C2%B7%20zero%20config-2f81f7?style=flat-square" alt="status">
+</p>
+
+<p align="center"><em>Your agent doesn't read the error message. This skill makes it.</em></p>
 
 An agent skill that replaces **"probably X, let me edit and see"** with a fixed debugging discipline: reproduce → localize → evidence → minimal fix → verify. If the skill is loaded, the agent physically cannot stack a guessed fix on top of another guessed fix — it has to show you the proof first.
 
 Works with any agent that supports [Agent Skills](https://agentskills.io): Claude Code, Codex CLI, Cursor, Gemini CLI, OpenCode, and more.
+
+## The discipline, as a map
+
+<p align="center">
+  <img src="docs/assets/diagram.png" alt="stop-guessing workflow: Reproduce → Read Full Error → Localize → One Hypothesis → Minimal Fix → Verify, with a disproven loop and a Stop &amp; Ask escalation path" width="100%">
+</p>
+
+The map above is a live [Archify](https://github.com/tt-a1i/archify) diagram — open [`docs/stop-guessing-diagram.html`](docs/stop-guessing-diagram.html) in a browser for the interactive version (pan/zoom, path tracing, dark mode).
 
 ## The problem
 

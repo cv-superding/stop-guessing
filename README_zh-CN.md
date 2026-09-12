@@ -2,21 +2,37 @@
   <strong>English</strong> · <a href="./README_zh-CN.md">简体中文</a>
 </p>
 
-<h1 align="center">stop-guessing</h1>
-
 <p align="center">
-  <em>你的 agent 从来不读报错信息。这个技能让它读。</em>
+  <img src="docs/assets/banner.svg" alt="stop-guessing — 你的 agent 从来不读报错信息。这个技能让它读。" width="100%">
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/works%20with-Claude%20Code%20%7C%20Codex%20%7C%20Cursor%20%7C%20Gemini%20CLI%20%7C%20OpenCode-111111?style=flat-square" alt="Works with">
-  <img src="https://img.shields.io/badge/license-MIT-111111?style=flat-square" alt="MIT">
-  <img src="https://img.shields.io/badge/core-one%20Markdown%20file-111111?style=flat-square" alt="One file">
+  <img src="https://img.shields.io/badge/license-MIT-3fb950?style=flat-square" alt="license MIT">
+  <img src="https://img.shields.io/badge/type-agent%20skill-2f81f7?style=flat-square" alt="type agent skill">
+  <img src="https://img.shields.io/badge/core-one%20SKILL.md-f0883e?style=flat-square" alt="core: one SKILL.md">
+  <img src="https://img.shields.io/badge/version-1.0.0-a371f7?style=flat-square" alt="version 1.0.0">
+  <img src="https://img.shields.io/badge/PRs-welcome-3fb950?style=flat-square" alt="PRs welcome">
 </p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/install-npx%20skills%20add%20cv--superding%2Fstop--guessing-8957e5?style=flat-square" alt="install">
+  <img src="https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Cursor%20%C2%B7%20Gemini%20CLI%20%C2%B7%20OpenCode-111111?style=flat-square" alt="works with">
+  <img src="https://img.shields.io/badge/status-stable%20%C2%B7%20zero%20config-2f81f7?style=flat-square" alt="status">
+</p>
+
+<p align="center"><em>你的 agent 从来不读报错信息。这个技能让它读。</em></p>
 
 一个给编程 agent 用的调试纪律技能，用固定流程替换 **"大概是 X 吧，我改一下试试"**：复现 → 定位 → 证据 → 最小修复 → 验证。加载这个技能后，agent 不能再把一个猜的修法叠在另一个猜的修法上面——必须先给你看证据。
 
 兼容所有支持 [Agent Skills](https://agentskills.io) 的 agent：Claude Code、Codex CLI、Cursor、Gemini CLI、OpenCode 等。
+
+## 纪律，画成一张图
+
+<p align="center">
+  <img src="docs/assets/diagram.png" alt="stop-guessing 流程图：复现 → 读完整报错 → 定位 → 唯一假设 → 最小修复 → 验证，带证伪回环和 Stop &amp; Ask 升级路径" width="100%">
+</p>
+
+上图由 [Archify](https://github.com/tt-a1i/archify) 生成——在浏览器中打开 [`docs/stop-guessing-diagram.html`](docs/stop-guessing-diagram.html) 可查看交互版（缩放、路径追踪、暗色主题）。
 
 ## 问题
 
