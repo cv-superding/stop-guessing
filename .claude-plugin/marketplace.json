@@ -1,0 +1,14 @@
+{
+  "name": "stop-guessing",
+  "owner": {
+    "name": "moChen"
+  },
+  "plugins": [
+    {
+      "name": "stop-guessing",
+      "description": "Debugging discipline for coding agents: reproduce, localize, evidence, minimal fix, verify. Never edit code to 'see if it helps'.",
+      "version": "1.0.0",
+      "source": "./"
+    }
+  ]
+}

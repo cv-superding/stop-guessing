@@ -1,0 +1,16 @@
+{
+  "name": "stop-guessing",
+  "version": "1.0.0",
+  "description": "Debugging discipline for coding agents: reproduce, localize, evidence, minimal fix, verify. Never edit code to 'see if it helps'.",
+  "author": {
+    "name": "moChen"
+  },
+  "license": "MIT",
+  "keywords": [
+    "debugging",
+    "agent-skills",
+    "claude-code",
+    "codex",
+    "cursor"
+  ]
+}
