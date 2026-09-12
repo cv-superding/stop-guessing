@@ -92,6 +92,23 @@ Tests in auth.test.ts fail on CI but pass locally. Find out why.
 
 The full discipline — including six numbered anti-patterns with Before/After examples (*shotgun fix*, *symptom patching*, *narrated diagnosis*, *optimistic refactor*, *retry loop*, *confessing by silence*) — is in [`SKILL.md`](SKILL.md).
 
+## Tested: honest numbers
+
+Two A/B rounds: same bug, two agents with no shared context, the B agent following this skill.
+
+| Round | Bug | Fix outcome | Without skill | With skill |
+|---|---|---|---|---|
+| 1 | Encoding trap: UTF-8 BOM → `KeyError`, with a bait fix (a `.get()` symptom patch) | **Identical**: both agents avoided the bait, found the real root cause, same one-line fix | 86k tokens | 118k tokens |
+| 2 | Silent logic bug: mutable-default cache pollution, with two stacked defects | **Identical**: both agents found both defects | 132k tokens, stopped once the scenario passed | 284k tokens, ran extra regression + idempotency checks and **proactively flagged** a pre-existing out-of-scope gap |
+
+What the test showed:
+
+- **It does not make classic bugs get fixed "more correctly"** — current models fix these without it;
+- **It changes the process**: evidence discipline (cache dumps, byte-level checks), verification depth (regression + idempotency), a predictable report structure, and no confessing by silence;
+- **The cost is tokens**: roughly 1.4–2.2×. Pure overhead on easy bugs; worth it for complex multi-file bugs, weaker models, or when you audit what the agent did.
+
+Use knowingly. (Small sample: two rounds, four agents, one model. Replicate with your own A/B if in doubt.)
+
 ## Verify it works
 
 Give your agent a bug and check the reply for the four required parts: **root cause → evidence → fix → verification**. If it ships an unverified fix, the skill isn't loaded — check `your-agent's skills list`.
