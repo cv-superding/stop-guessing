@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/assets/banner.svg" alt="stop-guessing — your agent doesn't read the error message. This skill makes it." width="100%">
+  <img src="docs/assets/banner-ai.png" alt="stop-guessing — your agent doesn't read the error message. This skill makes it." width="100%">
 </p>
 
 <p align="center">
