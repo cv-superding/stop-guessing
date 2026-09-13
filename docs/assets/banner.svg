@@ -5,9 +5,9 @@
       <stop offset="0.55" stop-color="#0e1b31"/>
       <stop offset="1" stop-color="#122340"/>
     </linearGradient>
-    <radialGradient id="glow" cx="0.82" cy="0.1" r="0.9">
-      <stop offset="0" stop-color="#2b4a7a" stop-opacity="0.55"/>
-      <stop offset="0.55" stop-color="#16294a" stop-opacity="0.12"/>
+    <radialGradient id="glow" cx="0.85" cy="0.08" r="0.9">
+      <stop offset="0" stop-color="#2b4a7a" stop-opacity="0.45"/>
+      <stop offset="0.55" stop-color="#16294a" stop-opacity="0.1"/>
       <stop offset="1" stop-color="#16294a" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="icon" x1="0" y1="0" x2="1" y2="1">
@@ -20,30 +20,44 @@
   <rect x="1" y="1" width="1198" height="298" rx="24" fill="url(#glow)"/>
   <rect x="1.5" y="1.5" width="1197" height="297" rx="23.5" fill="none" stroke="#24395e" stroke-width="1.5"/>
 
-  <!-- icon: magnifying glass over an error line -->
+  <!-- left column: icon + title + tagline + chips -->
   <g>
-    <rect x="56" y="76" width="96" height="96" rx="22" fill="url(#icon)"/>
-    <circle cx="98" cy="115" r="19" fill="none" stroke="#ffffff" stroke-width="6"/>
-    <line x1="112" y1="130" x2="126" y2="145" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
-    <line x1="88" y1="153" x2="120" y2="153" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.85"/>
+    <rect x="56" y="66" width="96" height="96" rx="22" fill="url(#icon)"/>
+    <circle cx="98" cy="105" r="19" fill="none" stroke="#ffffff" stroke-width="6"/>
+    <line x1="112" y1="120" x2="126" y2="135" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
+    <line x1="88" y1="143" x2="120" y2="143" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.85"/>
   </g>
 
-  <text x="190" y="130" font-family="Segoe UI, system-ui, -apple-system, sans-serif" font-size="54" font-weight="700" fill="#ffffff">stop-guessing</text>
-  <text x="192" y="172" font-family="Segoe UI, system-ui, -apple-system, sans-serif" font-size="22" fill="#b8c7dd">Your agent doesn't read the error message. This skill makes it.</text>
+  <text x="182" y="118" font-family="Segoe UI, system-ui, -apple-system, sans-serif" font-size="50" font-weight="700" fill="#ffffff">stop-guessing</text>
+  <text x="184" y="152" font-family="Segoe UI, system-ui, -apple-system, sans-serif" font-size="20" fill="#b8c7dd">Your agent doesn't read the error message.</text>
+  <text x="184" y="178" font-family="Segoe UI, system-ui, -apple-system, sans-serif" font-size="20" fill="#b8c7dd">This skill makes it.</text>
 
-  <!-- feature chips -->
-  <g font-family="Consolas, Menlo, monospace" font-size="16">
-    <rect x="56"  y="200" width="170" height="36" rx="18" fill="#1b2a44" stroke="#2a3c5e"/>
-    <text x="141" y="223" text-anchor="middle" fill="#cfe0f5">reproduce first</text>
-    <rect x="240" y="200" width="161" height="36" rx="18" fill="#1b2a44" stroke="#2a3c5e"/>
-    <text x="320" y="223" text-anchor="middle" fill="#cfe0f5">one hypothesis</text>
-    <rect x="415" y="200" width="142" height="36" rx="18" fill="#1b2a44" stroke="#2a3c5e"/>
-    <text x="486" y="223" text-anchor="middle" fill="#cfe0f5">minimal diff</text>
-    <rect x="571" y="200" width="152" height="36" rx="18" fill="#1b2a44" stroke="#2a3c5e"/>
-    <text x="647" y="223" text-anchor="middle" fill="#cfe0f5">verify always</text>
-    <rect x="737" y="200" width="170" height="36" rx="18" fill="#1b2a44" stroke="#2a3c5e"/>
-    <text x="822" y="223" text-anchor="middle" fill="#cfe0f5">6 anti-patterns</text>
+  <g font-family="Consolas, Menlo, monospace" font-size="15">
+    <rect x="56" y="206" width="170" height="34" rx="17" fill="#16253e" stroke="#24395e"/>
+    <text x="141" y="228" text-anchor="middle" fill="#cfe0f5">reproduce first</text>
+    <rect x="240" y="206" width="170" height="34" rx="17" fill="#16253e" stroke="#24395e"/>
+    <text x="325" y="228" text-anchor="middle" fill="#cfe0f5">one hypothesis</text>
+
+    <rect x="56" y="250" width="152" height="34" rx="17" fill="#16253e" stroke="#24395e"/>
+    <text x="132" y="272" text-anchor="middle" fill="#cfe0f5">minimal diff</text>
+    <rect x="222" y="250" width="152" height="34" rx="17" fill="#16253e" stroke="#24395e"/>
+    <text x="298" y="272" text-anchor="middle" fill="#cfe0f5">verify always</text>
   </g>
 
-  <text x="58" y="272" font-family="Consolas, Menlo, monospace" font-size="15" fill="#7e93b4">agent skill · MIT · works with Claude Code / Codex / Cursor / Gemini CLI / OpenCode</text>
+  <!-- right column: verification log card -->
+  <g>
+    <rect x="740" y="46" width="404" height="208" rx="16" fill="#101d33" stroke="#24395e"/>
+    <circle cx="766" cy="72" r="6" fill="#2f7ff0"/>
+    <circle cx="786" cy="72" r="6" fill="#37d0a2"/>
+    <circle cx="806" cy="72" r="6" fill="#31517c"/>
+    <line x1="756" y1="90" x2="1128" y2="90" stroke="#24395e"/>
+    <g font-family="Consolas, Menlo, monospace" font-size="15">
+      <text x="766" y="118" fill="#8fa8c9">$ pytest auth_test -x</text>
+      <text x="766" y="144" fill="#37d0a2">✓</text><text x="786" y="144" fill="#cfe0f5">reproduce</text><text x="900" y="144" fill="#8fa8c9">exit 1 → 0</text>
+      <text x="766" y="168" fill="#37d0a2">✓</text><text x="786" y="168" fill="#cfe0f5">evidence</text><text x="900" y="168" fill="#8fa8c9">cache key omits id</text>
+      <text x="766" y="192" fill="#37d0a2">✓</text><text x="786" y="192" fill="#cfe0f5">fix</text><text x="900" y="192" fill="#8fa8c9">1 line, buildConfig()</text>
+      <text x="766" y="216" fill="#37d0a2">✓</text><text x="786" y="216" fill="#cfe0f5">verify</text><text x="900" y="216" fill="#8fa8c9">14/14 pass</text>
+      <text x="766" y="240" fill="#6b83a5">no edits without proof</text>
+    </g>
+  </g>
 </svg>
